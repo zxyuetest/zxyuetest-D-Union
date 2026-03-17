@@ -3,7 +3,15 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { User, Settings, ChevronRight, Award, CreditCard, HeartHandshake, FileText, HelpCircle, LogOut, Bell } from 'lucide-react';
 
-export default function Profile({ onNavigate }: { onNavigate: (view: string) => void }) {
+export default function Profile({ 
+  onNavigate, 
+  unreadCount = 0, 
+  onShowNotifications 
+}: { 
+  onNavigate: (view: string) => void;
+  unreadCount?: number;
+  onShowNotifications?: () => void;
+}) {
   const menuGroups = [
     {
       title: '我的服务',
@@ -30,11 +38,13 @@ export default function Profile({ onNavigate }: { onNavigate: (view: string) => 
         <h1 className="text-lg font-bold flex items-center">
           <User className="w-5 h-5 mr-1.5 text-white" /> 我的
         </h1>
-        <div className="relative p-2 cursor-pointer">
+        <div className="relative p-2 cursor-pointer" onClick={onShowNotifications}>
           <Bell className="w-6 h-6" />
-          <span className="absolute top-1 right-1 bg-white text-red-600 text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">
-            1
-          </span>
+          {unreadCount > 0 && (
+            <span className="absolute top-1 right-1 bg-white text-red-600 text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">
+              {unreadCount}
+            </span>
+          )}
         </div>
       </header>
 

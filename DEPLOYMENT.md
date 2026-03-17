@@ -85,9 +85,9 @@ npm run build
 ```
 
 ### 3.2 使用 PM2 启动应用
-构建完成后，使用 PM2 启动 Next.js 服务（默认运行在 3000 端口）：
+构建完成后，使用 PM2 启动 Next.js 服务（指定运行在 5004 端口）：
 ```bash
-pm2 start npm --name "d-union" -- start
+pm2 start npm --name "d-union" -- start -- -p 5004
 ```
 
 ### 3.3 配置 PM2 开机自启
@@ -119,7 +119,7 @@ server {
     server_name your_domain.com; # 替换为您的域名或 IP
 
     location / {
-        proxy_pass http://localhost:3000; # 转发到 Next.js 默认端口
+        proxy_pass http://localhost:5004; # 转发到 Next.js 配置的 5004 端口
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
