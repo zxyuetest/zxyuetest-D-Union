@@ -10,6 +10,7 @@ import Insurance from './Insurance';
 import Counseling from './Counseling';
 import LegalAid from './LegalAid';
 import Finance from './Finance';
+import Surveys from './Surveys';
 import Login, { UserType } from './Login';
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
       case 'insurance': return <Insurance onBack={() => setCurrentView('home')} />;
       case 'counseling': return <Counseling onBack={() => setCurrentView('home')} />;
       case 'legal_aid': return <LegalAid onBack={() => setCurrentView('home')} />;
+      case 'surveys': return <Surveys onBack={() => setCurrentView('home')} user={user} />;
       case 'fund_approval': return <Finance onBack={() => setCurrentView('home')} defaultTab="fund" />;
       case 'expense_reimbursement': return <Finance onBack={() => setCurrentView('home')} defaultTab="expense" />;
       case 'home':
