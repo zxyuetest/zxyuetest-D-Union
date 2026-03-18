@@ -29,6 +29,12 @@ export default function App() {
   }
 
   const renderView = () => {
+    if (currentView.startsWith('chat_')) {
+      const parts = currentView.split('_');
+      const chatName = parts.slice(2).join('_'); // Handle names with underscores
+      return <Chat onBack={() => setCurrentView('home')} user={user} chatName={chatName} />;
+    }
+
     switch (currentView) {
       case 'dues': return <Dues onBack={() => setCurrentView('home')} />;
       case 'activities': return <Activities onBack={() => setCurrentView('home')} />;
@@ -39,7 +45,6 @@ export default function App() {
       case 'counseling': return <Counseling onBack={() => setCurrentView('home')} />;
       case 'legal_aid': return <LegalAid onBack={() => setCurrentView('home')} />;
       case 'surveys': return <Surveys onBack={() => setCurrentView('home')} user={user} />;
-      case 'chat': return <Chat onBack={() => setCurrentView('home')} user={user} />;
       case 'fund_approval': return <Finance onBack={() => setCurrentView('home')} defaultTab="fund" />;
       case 'expense_reimbursement': return <Finance onBack={() => setCurrentView('home')} defaultTab="expense" />;
       case 'home':

@@ -14,8 +14,30 @@ interface Message {
   type: 'text' | 'image' | 'system';
 }
 
-export default function Chat({ onBack, user }: { onBack: () => void, user: UserType }) {
-  const [messages, setMessages] = useState<Message[]>([
+export default function Chat({ onBack, user, chatName }: { onBack: () => void, user: UserType, chatName?: string }) {
+  const isAnonymous = !!chatName;
+  const targetName = chatName || `${user.unionName}交流群`;
+
+  const [messages, setMessages] = useState<Message[]>(isAnonymous ? [
+    {
+      id: 'msg_0',
+      senderName: '系统',
+      senderAvatar: '',
+      content: '您已进入匿名聊天模式，您的身份将被隐藏。',
+      timestamp: '10:00',
+      isSelf: false,
+      type: 'system'
+    },
+    {
+      id: 'msg_1',
+      senderName: targetName,
+      senderAvatar: `https://picsum.photos/seed/${targetName}/100/100`,
+      content: '你好！',
+      timestamp: '10:05',
+      isSelf: false,
+      type: 'text'
+    }
+  ] : [
     {
       id: 'msg_0',
       senderName: '系统',
@@ -71,8 +93,8 @@ export default function Chat({ onBack, user }: { onBack: () => void, user: UserT
 
     const newMessage: Message = {
       id: `msg_${Date.now()}`,
-      senderName: `${user.name} (${user.unionName})`,
-      senderAvatar: `https://picsum.photos/seed/${user.id || 'user'}/100/100`,
+      senderName: isAnonymous ? '匿名用户 (我)' : `${user.name} (${user.unionName})`,
+      senderAvatar: isAnonymous ? `https://picsum.photos/seed/anon_${user.id}/100/100` : `https://picsum.photos/seed/${user.id || 'user'}/100/100`,
       content: inputText,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       isSelf: true,
@@ -96,8 +118,8 @@ export default function Chat({ onBack, user }: { onBack: () => void, user: UserT
       
       const replyMessage: Message = {
         id: `msg_${Date.now() + 1}`,
-        senderName: `工会小助手 (${user.unionName})`,
-        senderAvatar: 'https://picsum.photos/seed/bot/100/100',
+        senderName: isAnonymous ? targetName : `工会小助手 (${user.unionName})`,
+        senderAvatar: isAnonymous ? `https://picsum.photos/seed/${targetName}/100/100` : 'https://picsum.photos/seed/bot/100/100',
         content: randomReply,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         isSelf: false,
@@ -128,10 +150,10 @@ export default function Chat({ onBack, user }: { onBack: () => void, user: UserT
             <ChevronLeft className="w-6 h-6" />
           </button>
           <div>
-            <h1 className="text-lg font-bold leading-tight">{user.unionName}交流群 (128)</h1>
+            <h1 className="text-lg font-bold leading-tight">{targetName}</h1>
             <p className="text-[10px] text-green-500 flex items-center">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span>
-              大家都在畅所欲言
+              {isAnonymous ? '在线' : '大家都在畅所欲言'}
             </p>
           </div>
         </div>

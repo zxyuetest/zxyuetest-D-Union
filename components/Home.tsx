@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Wallet, CalendarDays, MessageSquarePlus, HeartHandshake, Award, Home as HomeIcon, Compass, User, Bell, ChevronRight, CreditCard, Receipt, Smile, Scale, Megaphone, FileCheck, LogOut, X, ChevronLeft, ClipboardList, MessageCircle } from 'lucide-react';
 import Discover from './Discover';
 import Profile from './Profile';
+import ChatList from './ChatList';
 import { UserType } from './Login';
 
 export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view: string) => void, user: UserType, onLogout: () => void }) {
@@ -32,7 +33,6 @@ export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view
     { id: 'activities', title: '工会活动', icon: <CalendarDays className="w-6 h-6 text-green-500" />, bg: 'bg-green-50' },
     { id: 'suggestions', title: '建言献策', icon: <MessageSquarePlus className="w-6 h-6 text-orange-500" />, bg: 'bg-orange-50' },
     { id: 'surveys', title: '调查问卷', icon: <ClipboardList className="w-6 h-6 text-cyan-500" />, bg: 'bg-cyan-50' },
-    { id: 'chat', title: '工会交流', icon: <MessageCircle className="w-6 h-6 text-violet-500" />, bg: 'bg-violet-50' },
     { id: 'matchmaking', title: '数字鹊桥', icon: <HeartHandshake className="w-6 h-6 text-pink-500" />, bg: 'bg-pink-50' },
     { id: 'points', title: '工会积分', icon: <Award className="w-6 h-6 text-purple-500" />, bg: 'bg-purple-50' },
     { id: 'insurance', title: '保险报销', icon: <Receipt className="w-6 h-6 text-teal-500" />, bg: 'bg-teal-50' },
@@ -55,7 +55,7 @@ export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view
   ];
 
   const handleMenuClick = (id: string) => {
-    if (['dues', 'activities', 'suggestions', 'surveys', 'chat', 'points', 'matchmaking', 'insurance', 'counseling', 'legal_aid', 'fund_approval'].includes(id)) {
+    if (['dues', 'activities', 'suggestions', 'surveys', 'points', 'matchmaking', 'insurance', 'counseling', 'legal_aid', 'fund_approval'].includes(id)) {
       onNavigate(id);
     } else {
       alert('该功能正在开发中，敬请期待！');
@@ -201,6 +201,7 @@ export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view
       )}
       
       {activeTab === 'discover' && <Discover onNavigate={onNavigate} />}
+      {activeTab === 'chat' && <ChatList onNavigateToChat={(chatId, chatName) => onNavigate(`chat_${chatId}_${chatName}`)} />}
       {activeTab === 'profile' && <Profile onNavigate={onNavigate} unreadCount={unreadCount} onShowNotifications={() => setShowNotifications(true)} />}
 
       {/* Bottom Navigation */}
@@ -208,6 +209,7 @@ export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view
         {[
           { id: 'home', icon: HomeIcon, label: '首页' },
           { id: 'discover', icon: Compass, label: '发现' },
+          { id: 'chat', icon: MessageCircle, label: '聊天' },
           { id: 'profile', icon: User, label: '我的' },
         ].map((tab) => (
           <button 
