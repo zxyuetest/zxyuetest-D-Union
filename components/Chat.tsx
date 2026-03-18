@@ -20,14 +20,14 @@ export default function Chat({ onBack, user }: { onBack: () => void, user: UserT
       id: 'msg_0',
       senderName: '系统',
       senderAvatar: '',
-      content: '欢迎来到数字工会交流群！大家可以在这里畅所欲言，交流工作与生活。请遵守群规，文明发言。',
+      content: `欢迎来到${user.unionName}交流群！大家可以在这里畅所欲言，交流工作与生活。请遵守群规，文明发言。`,
       timestamp: '10:00',
       isSelf: false,
       type: 'system'
     },
     {
       id: 'msg_1',
-      senderName: '李主席 (工会)',
+      senderName: `李主席 (${user.unionName})`,
       senderAvatar: 'https://picsum.photos/seed/li/100/100',
       content: '各位同事上午好！本周五下午工会将组织羽毛球比赛，欢迎大家踊跃报名参加！🏸',
       timestamp: '10:05',
@@ -36,7 +36,7 @@ export default function Chat({ onBack, user }: { onBack: () => void, user: UserT
     },
     {
       id: 'msg_2',
-      senderName: '王建国 (研发部)',
+      senderName: `王建国 (${user.unionName})`,
       senderAvatar: 'https://picsum.photos/seed/wang/100/100',
       content: '太棒了！我已经报名了，有没有一起组队双打的？',
       timestamp: '10:08',
@@ -45,7 +45,7 @@ export default function Chat({ onBack, user }: { onBack: () => void, user: UserT
     },
     {
       id: 'msg_3',
-      senderName: '赵小雅 (人事部)',
+      senderName: `赵小雅 (${user.unionName})`,
       senderAvatar: 'https://picsum.photos/seed/zhao/100/100',
       content: '算我一个！不过我打得不太好，求带飞~ 😂',
       timestamp: '10:12',
@@ -71,7 +71,7 @@ export default function Chat({ onBack, user }: { onBack: () => void, user: UserT
 
     const newMessage: Message = {
       id: `msg_${Date.now()}`,
-      senderName: user.name,
+      senderName: `${user.name} (${user.unionName})`,
       senderAvatar: `https://picsum.photos/seed/${user.id || 'user'}/100/100`,
       content: inputText,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -96,7 +96,7 @@ export default function Chat({ onBack, user }: { onBack: () => void, user: UserT
       
       const replyMessage: Message = {
         id: `msg_${Date.now() + 1}`,
-        senderName: '工会小助手',
+        senderName: `工会小助手 (${user.unionName})`,
         senderAvatar: 'https://picsum.photos/seed/bot/100/100',
         content: randomReply,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -128,7 +128,7 @@ export default function Chat({ onBack, user }: { onBack: () => void, user: UserT
             <ChevronLeft className="w-6 h-6" />
           </button>
           <div>
-            <h1 className="text-lg font-bold leading-tight">工会交流群 (128)</h1>
+            <h1 className="text-lg font-bold leading-tight">{user.unionName}交流群 (128)</h1>
             <p className="text-[10px] text-green-500 flex items-center">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-1"></span>
               大家都在畅所欲言
