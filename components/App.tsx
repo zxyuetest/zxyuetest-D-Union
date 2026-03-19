@@ -13,6 +13,7 @@ import Finance from './Finance';
 import Surveys from './Surveys';
 import Chat from './Chat';
 import Login, { UserType } from './Login';
+import MyMatchmaking from './MyMatchmaking';
 
 export default function App() {
   const [user, setUser] = useState<UserType | null>(null);
@@ -41,6 +42,7 @@ export default function App() {
       case 'suggestions': return <Suggestions onBack={() => setCurrentView('home')} />;
       case 'points': return <Points onBack={() => setCurrentView('home')} />;
       case 'matchmaking': return <Matchmaking onBack={() => setCurrentView('home')} />;
+      case 'my_matchmaking': return <MyMatchmaking onBack={() => setCurrentView('home')} />;
       case 'insurance': return <Insurance onBack={() => setCurrentView('home')} />;
       case 'counseling': return <Counseling onBack={() => setCurrentView('home')} />;
       case 'legal_aid': return <LegalAid onBack={() => setCurrentView('home')} />;

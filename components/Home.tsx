@@ -41,7 +41,7 @@ export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view
   ];
 
   const leaderItems = [
-    { id: 'fund_approval', title: '财务审批', icon: <FileCheck className="w-6 h-6 text-red-500" />, bg: 'bg-red-50' }
+    { id: 'fund_approval', title: '业务审批', icon: <FileCheck className="w-6 h-6 text-red-500" />, bg: 'bg-red-50' }
   ];
 
   const menuItems = user.role === 'leader' 
@@ -105,13 +105,9 @@ export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view
                       <h2 className="font-bold text-gray-800 text-lg flex items-baseline gap-2">
                         {user.name}
                         <span className="text-xs font-normal text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
-                          {user.branchName}
+                          星火科技集团工会
                         </span>
                       </h2>
-                      <p className="text-xs text-gray-500 mt-1 flex items-center">
-                        <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-1.5"></span>
-                        {user.unionName} · {user.role === 'leader' ? '工会主席' : '正式会员'}
-                      </p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -128,14 +124,6 @@ export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view
                   <button className="text-xs text-red-600 font-medium flex items-center">
                     查看明细 <ChevronRight className="w-3 h-3 ml-0.5" />
                   </button>
-                </div>
-              </motion.div>
-
-              {/* Announcement Notice */}
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="bg-orange-50 rounded-xl p-3 flex items-center space-x-3 border border-orange-100 cursor-pointer">
-                <Megaphone className="w-5 h-5 text-orange-500 flex-shrink-0" />
-                <div className="flex-1 overflow-hidden">
-                  <p className="text-sm text-orange-800 truncate">关于开展2026年度“最美工会人”评选活动的通知</p>
                 </div>
               </motion.div>
 

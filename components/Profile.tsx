@@ -18,7 +18,7 @@ export default function Profile({
       items: [
         { id: 'dues', icon: CreditCard, label: '会费缴纳', color: 'text-blue-500', bg: 'bg-blue-50' },
         { id: 'points', icon: Award, label: '我的积分', color: 'text-purple-500', bg: 'bg-purple-50' },
-        { id: 'matchmaking', icon: HeartHandshake, label: '数字鹊桥', color: 'text-pink-500', bg: 'bg-pink-50' },
+        { id: 'my_matchmaking', icon: HeartHandshake, label: '我的鹊桥', color: 'text-pink-500', bg: 'bg-pink-50' },
       ]
     },
     {
