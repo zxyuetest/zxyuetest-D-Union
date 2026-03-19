@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Wallet, CalendarDays, MessageSquarePlus, HeartHandshake, Award, Home as HomeIcon, Compass, User, Bell, ChevronRight, CreditCard, Receipt, Smile, Scale, Megaphone, FileCheck, LogOut, X, ChevronLeft, ClipboardList, MessageCircle } from 'lucide-react';
-import Discover from './Discover';
 import Profile from './Profile';
 import ChatList from './ChatList';
 import { UserType } from './Login';
@@ -188,7 +187,6 @@ export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view
         </main>
       )}
       
-      {activeTab === 'discover' && <Discover onNavigate={onNavigate} />}
       {activeTab === 'chat' && <ChatList onNavigateToChat={(chatId, chatName) => onNavigate(`chat_${chatId}_${chatName}`)} />}
       {activeTab === 'profile' && <Profile onNavigate={onNavigate} unreadCount={unreadCount} onShowNotifications={() => setShowNotifications(true)} />}
 
@@ -196,7 +194,6 @@ export default function Home({ onNavigate, user, onLogout }: { onNavigate: (view
       <nav className="absolute bottom-0 w-full bg-white border-t border-gray-200 flex justify-around items-center h-16 pb-safe z-20 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
         {[
           { id: 'home', icon: HomeIcon, label: '首页' },
-          { id: 'discover', icon: Compass, label: '发现' },
           { id: 'chat', icon: MessageCircle, label: '聊天' },
           { id: 'profile', icon: User, label: '我的' },
         ].map((tab) => (

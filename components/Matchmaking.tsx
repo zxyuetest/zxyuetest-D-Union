@@ -1,16 +1,17 @@
 "use client";
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import MyMatchmaking from './MyMatchmaking';
 import { 
   ChevronLeft, Heart, Sparkles, ShieldCheck, Lock, MessageCircle, 
   UserCheck, Bot, User, Target, EyeOff, Settings, Send, Image as ImageIcon,
-  Edit3, Save, Coffee, Users, X, MapPin, Briefcase, GraduationCap, Ruler, Activity, Compass, Eye, CheckCircle2, CreditCard, ChevronRight, Home, Utensils, Calendar, Check
+  Edit3, Save, Coffee, Users, X, MapPin, Briefcase, GraduationCap, Ruler, Activity, Compass, Eye, CheckCircle2, CreditCard, ChevronRight, Home, Utensils, Calendar, Check, HeartHandshake
 } from 'lucide-react';
 
 const GUESTS = [
   {
     id: 'g1',
-    name: '林静',
+    name: '林**',
     age: 26,
     height: '165cm',
     location: '市中心区',
@@ -35,7 +36,7 @@ const GUESTS = [
   },
   {
     id: 'g2',
-    name: '陈宇',
+    name: '陈**',
     age: 28,
     height: '180cm',
     location: '高新区',
@@ -60,7 +61,7 @@ const GUESTS = [
   },
   {
     id: 'g3',
-    name: '王雪',
+    name: '王**',
     age: 25,
     height: '162cm',
     location: '滨海新区',
@@ -85,7 +86,7 @@ const GUESTS = [
   },
   {
     id: 'g4',
-    name: '张伟',
+    name: '张**',
     age: 29,
     height: '178cm',
     location: '老城区',
@@ -110,7 +111,7 @@ const GUESTS = [
   },
   {
     id: 'g5',
-    name: '李娜',
+    name: '李**',
     age: 27,
     height: '168cm',
     location: '大学城',
@@ -141,7 +142,7 @@ function Dashboard({ onNavigate, onBack, scores }: { onNavigate: (v: string, gue
   const [showScoreDetails, setShowScoreDetails] = useState(false);
 
   return (
-    <div className="flex flex-col h-full bg-pink-50/30">
+    <div className="flex flex-col h-full bg-pink-50/30 relative">
       <header className="bg-gradient-to-r from-pink-500 to-red-500 text-white p-4 sticky top-0 z-20 flex items-center justify-between shadow-md">
         <div className="flex items-center">
           <button onClick={onBack} className="p-1 -ml-1 mr-2 active:bg-white/20 rounded-full transition-colors">
@@ -152,26 +153,14 @@ function Dashboard({ onNavigate, onBack, scores }: { onNavigate: (v: string, gue
           </h1>
         </div>
         <div className="flex items-center space-x-3">
-          <button onClick={() => onNavigate('ideal_partner')} className="p-1.5 bg-white/20 rounded-full backdrop-blur-sm active:bg-white/30 transition-colors relative group">
-            <Target className="w-5 h-5" />
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-1.5 py-0.5 rounded">理想伴侣</span>
-          </button>
           <button onClick={() => setShowScoreDetails(true)} className="p-1.5 bg-white/20 rounded-full backdrop-blur-sm active:bg-white/30 transition-colors relative group">
             <Activity className="w-5 h-5" />
             <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-1.5 py-0.5 rounded">综合指数</span>
           </button>
-          <button onClick={() => onNavigate('aicoach')} className="p-1.5 bg-white/20 rounded-full backdrop-blur-sm active:bg-white/30 transition-colors relative group">
-            <Bot className="w-5 h-5" />
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-1.5 py-0.5 rounded">恋爱导师</span>
-          </button>
-          <button onClick={() => onNavigate('events')} className="p-1.5 bg-white/20 rounded-full backdrop-blur-sm active:bg-white/30 transition-colors relative group">
-            <Coffee className="w-5 h-5" />
-            <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-1.5 py-0.5 rounded">线下联谊</span>
-          </button>
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto p-4 space-y-6 pb-20">
+      <main className="flex-1 overflow-y-auto p-4 space-y-6 pb-24">
         <div className="flex items-center justify-between px-1 mb-2">
           <h2 className="text-lg font-bold text-gray-800">今日推荐嘉宾</h2>
           <span className="text-xs text-pink-600 bg-pink-100 px-2 py-1 rounded-full font-medium">每日更新</span>
@@ -290,6 +279,33 @@ function Dashboard({ onNavigate, onBack, scores }: { onNavigate: (v: string, gue
           </div>
         )}
       </AnimatePresence>
+
+      <div className="absolute bottom-0 w-full bg-white border-t border-gray-100 px-6 py-3 flex justify-around items-center z-30 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <button onClick={() => onNavigate('ideal_partner')} className="flex flex-col items-center justify-center space-y-1 w-16 group">
+          <div className="p-2 rounded-xl bg-pink-50 text-pink-500 group-active:scale-95 transition-transform">
+            <Target className="w-5 h-5" />
+          </div>
+          <span className="text-[10px] font-medium text-gray-600">理想伴侣</span>
+        </button>
+        <button onClick={() => onNavigate('events')} className="flex flex-col items-center justify-center space-y-1 w-16 group">
+          <div className="p-2 rounded-xl bg-pink-50 text-pink-500 group-active:scale-95 transition-transform">
+            <Coffee className="w-5 h-5" />
+          </div>
+          <span className="text-[10px] font-medium text-gray-600">线下联谊</span>
+        </button>
+        <button onClick={() => onNavigate('aicoach')} className="flex flex-col items-center justify-center space-y-1 w-16 group">
+          <div className="p-2 rounded-xl bg-pink-50 text-pink-500 group-active:scale-95 transition-transform">
+            <Bot className="w-5 h-5" />
+          </div>
+          <span className="text-[10px] font-medium text-gray-600">恋爱导师</span>
+        </button>
+        <button onClick={() => onNavigate('my_matchmaking')} className="flex flex-col items-center justify-center space-y-1 w-16 group">
+          <div className="p-2 rounded-xl bg-pink-50 text-pink-500 group-active:scale-95 transition-transform">
+            <HeartHandshake className="w-5 h-5" />
+          </div>
+          <span className="text-[10px] font-medium text-gray-600">我的鹊桥</span>
+        </button>
+      </div>
     </div>
   );
 }
@@ -1139,6 +1155,7 @@ export default function Matchmaking({ onBack }: { onBack: () => void }) {
       case 'aicoach': return <AICoach onBack={() => setCurrentView('dashboard')} />;
       case 'events': return <Events onBack={() => setCurrentView('dashboard')} />;
       case 'ideal_partner': return <IdealPartner onBack={() => setCurrentView('dashboard')} />;
+      case 'my_matchmaking': return <MyMatchmaking onBack={() => setCurrentView('dashboard')} />;
       case 'dashboard':
       default:
         return <Dashboard onNavigate={handleNavigate} onBack={onBack} scores={scores} />;
